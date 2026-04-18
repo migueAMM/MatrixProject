@@ -1,13 +1,24 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+import models.BigMatrix;
+import generators.MatrixGenerator;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+public class Main {
+
+    static void main() {
+        //Quemamos un tamaño provisional de las matrices de 1000x1000
+        int filas = 1000;
+        int columnas = 1000;
+
+        System.out.println("Generando matriz de: " + filas + " filas y " + columnas);
+
+        //Generamos las matrices
+        BigMatrix matrizA = MatrixGenerator.generateRandom(filas, columnas);
+        BigMatrix matrizB = MatrixGenerator.generateRandom(filas, columnas);
+
+        System.out.println("Matrices generadas con éxito");
+
+        //Visualizacion de las matrices mostrando solo un pedazo
+        //matrizA.mostrarResumen(10);  //mostramos un segmento de 10x10
+        //matrizB.mostrarResumen(10);
     }
+
 }
