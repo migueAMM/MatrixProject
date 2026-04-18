@@ -24,7 +24,7 @@ public class BenchMarkRunner {
         long tiempoFin = System.currentTimeMillis();
         long tiempoTotal = tiempoFin - tiempoInicio;
 
-        System.out.println("Tiempo de ejecucion del algoritmo: " + algortimo.getNombre() + "es de " + tiempoTotal + "ms");
+        System.out.println("Tiempo de ejecucion " + algortimo.getNombre() + "es de " + tiempoTotal + " ms");
 
         return matrizA;
     }
