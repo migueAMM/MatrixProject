@@ -1,35 +1,38 @@
+import algorithms.*;
 import models.BigMatrix;
 import generators.MatrixGenerator;
-import algorithms.SecuencialIngenuo;
+import utils.PersistenceManager;
 import utils.BenchMarkRunner;
-import algorithms.SecuencialOptimizado;
 
 public class Main {
+    public static void main(String[] args) {
+        int n = 1024;
+        String archivoA = "matrizA_" + n + ".txt";
+        String archivoB = "matrizB_" + n + ".txt";
 
-    static void main() {
-        //Quemamos un tamaño provisional de las matrices de 1000x1000
-        int filas = 1000;
-        int columnas = 1000;
+        // Intenta cargar matrices existentes
+        BigMatrix matrizA = PersistenceManager.cargarMatriz(archivoA);
+        BigMatrix matrizB = PersistenceManager.cargarMatriz(archivoB);
 
-        System.out.println("Generando matriz de: " + filas + " filas y " + columnas);
-        //Generamos las matrices
-        BigMatrix matrizA = MatrixGenerator.generateRandom(filas, columnas);
-        BigMatrix matrizB = MatrixGenerator.generateRandom(filas, columnas);
-        System.out.println("Matrices generadas con éxito");
+        // Si no existen, generarlas y guardarlas (Solo pasará la primera vez)
+        if (matrizA == null || matrizB == null) {
+            System.out.println("Generando matrices nuevas... ");
+            matrizA = MatrixGenerator.generateRandom(n, n); //Genera numeros de minimo 6 digitos
+            matrizB = MatrixGenerator.generateRandom(n, n);
 
-        //Visualizacion de las matrices mostrando solo un pedazo
-        //matrizA.mostrarResumen(10);  //mostramos un segmento de 10x10
-        //matrizB.mostrarResumen(10);
+            PersistenceManager.guardarMatriz(matrizA, archivoA);
+            PersistenceManager.guardarMatriz(matrizB, archivoB);
+        }
 
-        SecuencialIngenuo secuencialIngenuo = new SecuencialIngenuo(); //Instanciamos nuestro primer algoritmo
-        SecuencialOptimizado secuencialOptimizado = new SecuencialOptimizado();//Instaniamos el segundo algoritmo
+        System.out.println("--- Iniciando Pruebas de Rendimiento ---");
 
+        BenchMarkRunner.iniciarNuevoReporte();
+        // Ejecutar los algoritmos que tenemos hasta ahora
+        BenchMarkRunner.evaluarAlgoritmo(new SecuencialIngenuo(), matrizA, matrizB);
+        BenchMarkRunner.evaluarAlgoritmo(new SecuencialOptimizado(), matrizA, matrizB);
+        BenchMarkRunner.evaluarAlgoritmo(new SecuencialTranspuesta(), matrizA, matrizB);
+        BenchMarkRunner.evaluarAlgoritmo(new ParaleloPorFilas(), matrizA, matrizB);
 
-        //1. Le pasamos el codigo y las matrices a nuestro runner
-        BigMatrix resultadoSecuencialIngenuo = BenchMarkRunner.evaluarAlgoritmo(secuencialIngenuo, matrizA, matrizB);
-        //2, Le pasamos el codigo y matrices al runner
-        BigMatrix resultadoSecuencialOptimizdo = BenchMarkRunner.evaluarAlgoritmo(secuencialOptimizado, matrizA, matrizB);
-
+        System.out.println("Pruebas finalizadas. Los tiempos se han guardado en 'resultados_tiempos.csv'.");
     }
-
 }

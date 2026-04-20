@@ -10,8 +10,8 @@ public class MatrixGenerator {
     Random random = new Random();
 
     //Definimos los limites escogidos, llenando la matriz con numeros entre 10000 y 250000
-    int min = 10000;
-    int max = 250000;
+    int min = 100000;
+    int max = 9999999;
 
     for (int i = 0 ; i < filas ; i++){
         for (int j = 0 ; j < columnas ; j++){

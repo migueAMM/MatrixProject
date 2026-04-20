@@ -29,6 +29,10 @@ public class BigMatrix {
         matriz[fila][columna] = valor;
     }
 
+    public void sumatoriaValor(int fila, int columna, long valor){
+        matriz[fila][columna] = valor;
+    }
+
     public void mostrarResumen (int limite){
 
         int filasAMostrar = Math.min(filas, limite);

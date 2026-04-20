@@ -10,12 +10,9 @@ public class SecuencialOptimizado implements MatrixAlgorithms{
 
     /***
      * En Java (y en la mayoría de los lenguajes), las matrices se guardan en la memoria RAM fila por fila (horizontalmente).
-     *
-     * En el Algoritmo 1 (i, j, k), el ciclo más interno (k) saltaba de fila en fila verticalmente para leer la Matriz B.
-     * A tu procesador le cuesta mucho trabajo hacer esos saltos, lo que genera algo llamado Cache Miss (la memoria ultrarrápida
-     * del procesador falla y tiene que ir a la memoria RAM, que es más lenta).
-     * En este Algoritmo 2 (i, k, j), simplemente cambiamos el orden de los ciclos for. Al poner la j al final, obligamos a la computadora
-     * a leer ambas matrices y la matriz de resultado horizontalmente. El procesador lee los datos de corrido, la memoria caché L1 acierta siempre,
+     * En este Algoritmo 2 (i, k, j), simplemente cambiamos el orden de los ciclos for. Al poner la j al final, obligamos a
+     * a leer ambas matrices y la matriz de resultado horizontalmente. El procesador lee los datos de corrido, se accede menos a la
+     * memoria RAM y usamos mas la memoria cache por lo que los datos se obtienen mucho mas rapido
      * @param matrizA Primera matriz a multiplicar
      * @param matrizB Segunda matriz a multiplicar
      * @return
@@ -33,7 +30,7 @@ public class SecuencialOptimizado implements MatrixAlgorithms{
 
         BigMatrix resultado = new BigMatrix(filasA, columnasB);
 
-        // ATENCIÓN AQUÍ: El orden de los ciclos cambia a i, k, j
+        // El orden de los ciclos cambia a i, k, j
         for (int i = 0; i < filasA; i++) {
             for (int k = 0; k < columnasA; k++) {
 
@@ -42,9 +39,8 @@ public class SecuencialOptimizado implements MatrixAlgorithms{
 
                 for (int j = 0; j < columnasB; j++) {
                     // Multiplicamos y sumamos al valor que ya existía en la celda del resultado
-                    long valorActual = resultado.getValue(i, j);
-                    long nuevoValor = valorActual + (valorA * matrizB.getValue(k, j));
-                    resultado.setValue(i, j, nuevoValor);
+                    long valorActual = valorA * matrizB.getValue(k , j);
+                    resultado.sumatoriaValor(i, j , valorActual);
                 }
             }
         }
