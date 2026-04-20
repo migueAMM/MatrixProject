@@ -1,5 +1,0 @@
-Algoritmo,Tamano,Tiempo_ms
-1. Algoritmo Secuencial Ingenuo (Fuerza Bruta),1024x1024,2014
-2. Secuencial Optimizado por Caché (i , k , j ) ,1024x1024,127
-3. Secuencial con la matriz B transpuesta,1024x1024,128
-4. Paralelo por filas (Usando multihilos basico (Hilos nativos)),1024x1024,93

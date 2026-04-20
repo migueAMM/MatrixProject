@@ -5,7 +5,7 @@ import models.BigMatrix;
 public class SecuencialOptimizado implements MatrixAlgorithms{
     @Override
     public String getNombre() {
-        return "2. Secuencial Optimizado por Caché (i , k , j ) ";
+        return "17. Secuencial Optimizado por Caché (i , k , j ) ";
     }
 
     /***

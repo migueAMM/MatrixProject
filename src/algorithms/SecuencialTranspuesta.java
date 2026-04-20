@@ -5,7 +5,7 @@ import models.BigMatrix;
 public class SecuencialTranspuesta implements MatrixAlgorithms{
     @Override
     public String getNombre() {
-        return "3. Secuencial con la matriz B transpuesta";
+        return "18. Secuencial con la matriz B transpuesta";
     }
 
     /***

@@ -5,7 +5,7 @@ import models.BigMatrix;
 public class ParaleloPorFilas implements MatrixAlgorithms{
     @Override
     public String getNombre() {
-        return "4. Paralelo por filas (Usando multihilos basico (Hilos nativos))";
+        return "16. Paralelo por filas (Usando multihilos basico (Hilos nativos))";
     }
 
     @Override

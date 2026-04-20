@@ -2,12 +2,12 @@ package algorithms;
 
 import models.BigMatrix;
 
-public class SecuencialIngenuo implements MatrixAlgorithms{
+public class NaivOnArray implements MatrixAlgorithms{
 
 
     @Override
     public String getNombre() {
-        return "1. Algoritmo Secuencial Ingenuo (Fuerza Bruta)";
+        return "1. NaivOnArray (Fuerza Bruta)";
     }
 
     /***
