@@ -19,9 +19,8 @@ public class Main {
         // Si no existen, generarlas y guardarlas (Solo pasará la primera vez)
         if (matrizA == null || matrizB == null) {
             System.out.println("Generando matrices nuevas... ");
-            matrizA = MatrixGenerator.generateRandom(n, n); //Genera numeros de minimo 6 digitos
+            matrizA = MatrixGenerator.generateRandom(n, n);
             matrizB = MatrixGenerator.generateRandom(n, n);
-
             PersistenceManager.guardarMatriz(matrizA, archivoA);
             PersistenceManager.guardarMatriz(matrizB, archivoB);
         }
@@ -29,58 +28,80 @@ public class Main {
         System.out.println("--- Iniciando Pruebas de Rendimiento ---");
 
         BenchMarkRunner.iniciarNuevoReporte();
-        // Ejecutar los algoritmos que tenemos en la tabla del enunciado (1-15)
-        //Comenzamos con 1.NaivOnArray
+
+        // ── Algoritmos 1–7: Fuerza bruta, Loop Unrolling, Winograd, Strassen ──
+
+        // 1. NaivOnArray
         BenchMarkRunner.evaluarAlgoritmo(new NaivOnArray(), matrizA, matrizB);
-        //2. NaivLoopUnrollingTwo
+
+        // 2. NaivLoopUnrollingTwo
         BenchMarkRunner.evaluarAlgoritmo(new NaivLoopUnrollingTwo(), matrizA, matrizB);
-        //3. NaivLoopUnrollingFour
 
-        //4. WinogradOriginal
+        // 3. NaivLoopUnrollingFour
+        BenchMarkRunner.evaluarAlgoritmo(new NaivLoopUnrollingFour(), matrizA, matrizB);
 
-        //5. WinogradScaled
+        // 4. WinogradOriginal
+        BenchMarkRunner.evaluarAlgoritmo(new WinogradOriginal(), matrizA, matrizB);
 
-        //6. StrassenNaiv
+        // 5. WinogradScaled
+        BenchMarkRunner.evaluarAlgoritmo(new WinogradScaled(), matrizA, matrizB);
 
-        //7. StrassenWinograd
+        // 6. StrassenNaiv
+        BenchMarkRunner.evaluarAlgoritmo(new StrassenNaiv(), matrizA, matrizB);
 
-        //8. Sequential block
+        // 7. StrassenWinograd
+        BenchMarkRunner.evaluarAlgoritmo(new StrassenWinograd(), matrizA, matrizB);
 
-        //9. Parallel Block
+        // ── Algoritmos 8–10: III Row x Column (Sequential, Parallel, Enhanced) ──
 
-        //10. Enhanced Parallel Block
+        // 8. III.3 Sequential Block
+        BenchMarkRunner.evaluarAlgoritmo(new SequentialBlockIII(), matrizA, matrizB);
 
-        //11. Sequential block
+        // 9. III.4 Parallel Block
+        BenchMarkRunner.evaluarAlgoritmo(new ParallelBlockIII(), matrizA, matrizB);
 
-        //12. Parallel Block
+        // 10. III.5 Enhanced Parallel Block
+        BenchMarkRunner.evaluarAlgoritmo(new EnhancedParallelBlockIII(), matrizA, matrizB);
 
-        //13. Enhanced Parallel Block
+        // ── Algoritmos 11–13: IV Row x Row (Sequential, Parallel, Enhanced) ──
 
-        //El 14 y 15 estan repetidos en la tabla
-        //14. Sequential block
+        // 11. IV.3 Sequential Block
+        BenchMarkRunner.evaluarAlgoritmo(new SequentialBlockIV(), matrizA, matrizB);
 
-        //15. Parallel Block
+        // 12. IV.4 Parallel Block
+        BenchMarkRunner.evaluarAlgoritmo(new ParallelBlockIV(), matrizA, matrizB);
 
-        //Aca ejecutamos los algoritmos adicionales que realizamos
-        BenchMarkRunner.evaluarAlgoritmo(new SecuencialOptimizado(), matrizA, matrizB);
-        BenchMarkRunner.evaluarAlgoritmo(new SecuencialTranspuesta(), matrizA, matrizB);
+        // 13. IV.5 Enhanced Parallel Block
+        BenchMarkRunner.evaluarAlgoritmo(new EnhancedParallelBlockIV(), matrizA, matrizB);
+
+        // ── Algoritmos 14–15: V Column x Column (Sequential, Parallel) ──
+
+        // 14. V.3 Sequential Block
+        BenchMarkRunner.evaluarAlgoritmo(new SequentialBlockV(), matrizA, matrizB);
+
+        // 15. V.4 Parallel Block
+        BenchMarkRunner.evaluarAlgoritmo(new ParallelBlockV(), matrizA, matrizB);
+
+        // ── Algoritmos adicionales propios ────────────────────────────────────
+
+        // 16. Paralelo por filas (hilos nativos)
         BenchMarkRunner.evaluarAlgoritmo(new ParaleloPorFilas(), matrizA, matrizB);
+
+        // 17. Secuencial Optimizado (orden i,k,j)
+        BenchMarkRunner.evaluarAlgoritmo(new SecuencialOptimizado(), matrizA, matrizB);
+
+        // 18. Secuencial con transpuesta de B
+        BenchMarkRunner.evaluarAlgoritmo(new SecuencialTranspuesta(), matrizA, matrizB);
 
         System.out.println("Pruebas finalizadas. Los tiempos se han guardado en 'resultados_tiempos.csv'.");
 
-        /***
-         * En este segmento de codigo estamos automatizando un comando que hara
-         * que al ejecutar el codigo salten las graficas generadas de esta
-         * ultima ejecucion automaticamente y se muestre en pantalla
-         */
+        // Generar y abrir gráfica automáticamente
         System.out.println("Generando y abriendo gráfica automáticamente...");
         try {
-            // "visualization" con 'z' como en tu imagen, y la ruta del script
             ProcessBuilder pb = new ProcessBuilder("python", "visualization/plot_results.py");
             pb.inheritIO();
             Process proceso = pb.start();
             proceso.waitFor();
-
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }

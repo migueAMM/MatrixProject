@@ -1,0 +1,9 @@
+Algoritmo,Tamano,Tiempo_ms
+"1. NaivOnArray (Fuerza Bruta)",1024,2208
+1. NaivOnArray (Fuerza Bruta),1024x1024,2208
+"2. NaivLoopUnrollingTwo",1024,1536
+2. NaivLoopUnrollingTwo,1024x1024,1536
+"3. NaivLoopUnrollingFour",1024,1512
+3. NaivLoopUnrollingFour,1024x1024,1512
+"4. WinogradOriginal",1024,1275
+4. WinogradOriginal,1024x1024,1275

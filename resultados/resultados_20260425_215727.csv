@@ -1,0 +1,37 @@
+Algoritmo,Tamano,Tiempo_ms
+"1. NaivOnArray (Fuerza Bruta)",1024,1862
+1. NaivOnArray (Fuerza Bruta),1024x1024,1862
+"2. NaivLoopUnrollingTwo",1024,1932
+2. NaivLoopUnrollingTwo,1024x1024,1932
+"3. NaivLoopUnrollingFour",1024,1458
+3. NaivLoopUnrollingFour,1024x1024,1458
+"4. WinogradOriginal",1024,1974
+4. WinogradOriginal,1024x1024,1974
+"5. WinogradScaled",1024,2854
+5. WinogradScaled,1024x1024,2854
+"6. StrassenNaiv",1024,337
+6. StrassenNaiv,1024x1024,337
+"7. StrassenWinograd",1024,391
+7. StrassenWinograd,1024x1024,391
+"8. III.3 Sequential Block (Row x Column)",1024,820
+8. III.3 Sequential Block (Row x Column),1024x1024,820
+"9. III.4 Parallel Block (Row x Column)",1024,276
+9. III.4 Parallel Block (Row x Column),1024x1024,276
+"10. III.5 Enhanced Parallel Block (Row x Column)",1024,458
+10. III.5 Enhanced Parallel Block (Row x Column),1024x1024,458
+"11. IV.3 Sequential Block (Row x Row)",1024,264
+11. IV.3 Sequential Block (Row x Row),1024x1024,264
+"12. IV.4 Parallel Block (Row x Row)",1024,116
+12. IV.4 Parallel Block (Row x Row),1024x1024,116
+"13. IV.5 Enhanced Parallel Block (Row x Row)",1024,150
+13. IV.5 Enhanced Parallel Block (Row x Row),1024x1024,150
+"14. V.3 Sequential Block (Column x Column)",1024,1464
+14. V.3 Sequential Block (Column x Column),1024x1024,1464
+"15. V.4 Parallel Block (Column x Column)",1024,451
+15. V.4 Parallel Block (Column x Column),1024x1024,451
+"16. Paralelo por filas (Usando multihilos basico (Hilos nativos))",1024,93
+16. Paralelo por filas (Usando multihilos basico (Hilos nativos)),1024x1024,93
+"17. Secuencial Optimizado por Caché (i , k , j ) ",1024,171
+17. Secuencial Optimizado por Caché (i , k , j ) ,1024x1024,171
+"18. Secuencial con la matriz B transpuesta",1024,139
+18. Secuencial con la matriz B transpuesta,1024x1024,139

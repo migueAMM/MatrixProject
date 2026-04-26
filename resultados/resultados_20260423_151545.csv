@@ -1,0 +1,11 @@
+Algoritmo,Tamano,Tiempo_ms
+"1. NaivOnArray (Fuerza Bruta)",1024,2811
+1. NaivOnArray (Fuerza Bruta),1024x1024,2811
+"2. NaivLoopUnrollingTwo",1024,2960
+2. NaivLoopUnrollingTwo,1024x1024,2960
+"17. Secuencial Optimizado por Caché (i , k , j ) ",1024,301
+17. Secuencial Optimizado por Caché (i , k , j ) ,1024x1024,301
+"18. Secuencial con la matriz B transpuesta",1024,262
+18. Secuencial con la matriz B transpuesta,1024x1024,262
+"16. Paralelo por filas (Usando multihilos basico (Hilos nativos))",1024,140
+16. Paralelo por filas (Usando multihilos basico (Hilos nativos)),1024x1024,140

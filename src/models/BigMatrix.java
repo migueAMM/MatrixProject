@@ -30,7 +30,7 @@ public class BigMatrix {
     }
 
     public void sumatoriaValor(int fila, int columna, long valor){
-        matriz[fila][columna] = valor;
+        matriz[fila][columna] += valor;
     }
 
     public void mostrarResumen (int limite){
